@@ -18,6 +18,5 @@ export class DashboardComponent implements OnInit {
     }
 
   marutiLogoClicked() {
-    alert('maruti clcked');
   }
 }
