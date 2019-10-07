@@ -1,0 +1,17 @@
+.form-container {
+    margin: 20px;
+    display: flex;
+    padding: 20px;
+}
+
+.form-element {
+    margin:20px;
+}
+
+.form-element input {
+    width: 400px;
+}
+.form-element label {
+}
+.form-element button {
+}
