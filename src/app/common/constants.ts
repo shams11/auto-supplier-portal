@@ -4,4 +4,7 @@ export class Constants {
   static APPLICATION_MS_EXCEL = 'application/vnd.ms-excel';
   static BASIC_AUTH_TYPE =  'Basic ';
   static USERNAME =  'username';
+  static ROLE =  'role';
+  static ROLES =  'roles';
+  static ADMIN = 'ADMIN';
 }
