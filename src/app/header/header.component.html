@@ -6,9 +6,7 @@
             <ul class="navbar-nav">
                 <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">
                     Home</a></li>
-                <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/addemployee"
-                       class="nav-link">Add
-                    New Employee</a></li>
+                <li><a *ngIf="loginService.isAdmin()" routerLink="/addemployee" class="nav-link">Add Employee</a></li>
             </ul>
         </div>
         <ul class="navbar-nav">

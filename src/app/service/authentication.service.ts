@@ -21,7 +21,8 @@ export class AuthenticationService {
             .pipe(
                 map(
                     userData => {
-                        sessionStorage.setItem('username', username);
+                        sessionStorage.setItem(Constants.USERNAME, username);
+                        sessionStorage.setItem(Constants.ROLE, userData[Constants.ROLES][0].uniqueName);
                         return userData;
                     }
                 )
@@ -29,12 +30,22 @@ export class AuthenticationService {
     }
 
     isUserLoggedIn() {
-        let user = sessionStorage.getItem(Constants.USERNAME);
+        const user = sessionStorage.getItem(Constants.USERNAME);
         return !(user === null);
+    }
+
+    getRole() {
+        return sessionStorage.getItem(Constants.ROLE);
+    }
+
+    isAdmin() {
+        const bool = this.getRole();
+        return Constants.ADMIN === bool;
     }
 
     logOut() {
         sessionStorage.removeItem(Constants.USERNAME);
+        sessionStorage.removeItem(Constants.ROLE);
     }
 
     getHttpParams(username: string, password: string) {
