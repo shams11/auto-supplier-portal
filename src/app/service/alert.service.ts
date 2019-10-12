@@ -1,43 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
     private subject = new Subject<any>();
-    private keepAfterRouteChange = false;
+    message: string;
 
-    constructor(private router: Router) {
-        // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
-        this.router.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
-                if (this.keepAfterRouteChange) {
-                    // only keep for a single route change
-                    this.keepAfterRouteChange = false;
-                } else {
-                    // clear alert message
-                    this.clear();
-                }
-            }
-        });
+    constructor() {
     }
 
     getAlert(): Observable<any> {
         return this.subject.asObservable();
     }
 
-    success(message: string, keepAfterRouteChange = false) {
-        this.keepAfterRouteChange = keepAfterRouteChange;
+    success(message: string) {
         this.subject.next({ text: message });
     }
 
-    error(message: string, keepAfterRouteChange = false) {
-        this.keepAfterRouteChange = keepAfterRouteChange;
-        this.subject.next({ text: message });
+    error(error) {
+        this.handleError(error);
+        this.subject.next(this.message);
     }
 
     clear() {
         // clear by calling subject.next() without parameters
         this.subject.next();
+    }
+
+    handleError(error: HttpErrorResponse) {
+        switch (error.status) {
+            case 401:
+                this.message = 'Username or password is incorrect';
+                break;
+            case 500:
+                this.message = 'Server error';
+                break;
+            default:
+                this.message = 'Server error';
+                return throwError(error);
+        }
     }
 }
