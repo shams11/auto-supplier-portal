@@ -7,4 +7,5 @@ export class Constants {
   static ROLE =  'role';
   static ROLES =  'roles';
   static ADMIN = 'ADMIN';
+  static BASIC_AUTH_STRING =  'basicAuth';
 }

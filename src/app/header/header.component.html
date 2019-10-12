@@ -4,9 +4,8 @@
         <div fxLayout="row">
             <div *ngIf="!loginService.isUserLoggedIn()" class="navbar-brand">Auto-Supplier</div>
             <ul class="navbar-nav">
-                <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">
-                    Home</a></li>
-                <li><a *ngIf="loginService.isAdmin()" routerLink="/addemployee" class="nav-link">Add Employee</a></li>
+                <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Home</a></li>
+                <li><a *ngIf="loginService.isAdmin()" routerLink="/add-user" class="nav-link">Add User</a></li>
             </ul>
         </div>
         <ul class="navbar-nav">

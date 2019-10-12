@@ -9,6 +9,7 @@ import { Constants } from '../common/constants';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+
     constructor(private httpClient: HttpClient,
                 private configService: ConfigService) {
     }
@@ -22,7 +23,9 @@ export class AuthenticationService {
                 map(
                     userData => {
                         sessionStorage.setItem(Constants.USERNAME, username);
-                        sessionStorage.setItem(Constants.ROLE, userData[Constants.ROLES][0].uniqueName);
+                        sessionStorage.setItem(Constants.ROLE, userData[ Constants.ROLES ][ 0 ].uniqueName);
+                        const basicAuthString = Constants.BASIC_AUTH_TYPE + btoa(username + ':' + password);
+                        sessionStorage.setItem(Constants.BASIC_AUTH_STRING, basicAuthString);
                         return userData;
                     }
                 )
@@ -46,6 +49,7 @@ export class AuthenticationService {
     logOut() {
         sessionStorage.removeItem(Constants.USERNAME);
         sessionStorage.removeItem(Constants.ROLE);
+        sessionStorage.removeItem(Constants.BASIC_AUTH_STRING);
     }
 
     getHttpParams(username: string, password: string) {
