@@ -13,7 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertComponent } from './alert/alert.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ToyotaComponent } from './toyota/toyota.component';
+import { ToyotaComponent } from './auto-brands/toyota/dashboard/toyota.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-interceptor.service';
 

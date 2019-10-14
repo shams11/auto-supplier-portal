@@ -18,9 +18,9 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
     }
 
-    toyotaLogoClicked() {
-        this.router.navigate(['/toyota']);
-    }
+    // toyotaLogoClicked() {
+    //     this.router.navigate(['/toyota']);
+    // }
 
     marutiLogoClicked() {
     }

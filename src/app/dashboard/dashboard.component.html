@@ -1,22 +1,22 @@
 <div class="dashboard-container" fxLayout="row wrap" fxLayoutAlign="spave-evenly centre" fxLayoutGap="150px">
-  <div class="dashboard-element" (click)="toyotaLogoClicked()">
+  <div class="dashboard-element">
     <a>
-      <img  src="./assets/images/toyota-logo.png"  />
-    </a>
-  </div>
-  <div class="dashboard-element" (click)="marutiLogoClicked()">
-    <a>
-      <img  src="./assets/images/maruti-logo.png"  />
+      <img  [routerLink]="['/toyota']" src="./assets/images/auto-brands/toyota/toyota-logo.png"  />
     </a>
   </div>
   <div class="dashboard-element">
     <a>
-      <img  src="./assets/images/hyundi-logo.png"  />
+      <img  [routerLink]="['/maruti']" src="./assets/images/auto-brands/maruti/maruti-logo.png"  />
     </a>
   </div>
   <div class="dashboard-element">
     <a>
-      <img  src="./assets/images/mahindra-logo.png"  />
+      <img  [routerLink]="['/hyundi']" src="./assets/images/auto-brands/hyundi/hyundi-logo.png"  />
+    </a>
+  </div>
+  <div class="dashboard-element">
+    <a>
+      <img  [routerLink]="['/mahindra']" src="./assets/images/auto-brands/mahindra/mahindra-logo.png"  />
     </a>
   </div>
 </div>

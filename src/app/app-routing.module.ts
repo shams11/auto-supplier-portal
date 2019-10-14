@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
-import { ToyotaComponent } from './toyota/toyota.component';
+import { ToyotaComponent } from './auto-brands/toyota/dashboard/toyota.component';
 import { AddUserComponent } from './add-user/add-user.component';
 
 const routes: Routes = [
