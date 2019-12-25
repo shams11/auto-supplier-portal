@@ -15,7 +15,7 @@ export class AlertService {
     }
 
     success(message: string) {
-        this.subject.next({ text: message });
+        this.subject.next(this.message);
     }
 
     error(error) {

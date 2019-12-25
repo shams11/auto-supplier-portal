@@ -4,7 +4,6 @@ import { AuthenticationService } from '../service/authentication.service';
 import { AlertService } from '../service/alert.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',

@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from '../service/alert.service';
+import { UserService } from '../service/user.service';
+import { ErrorService } from '../service/error.service';
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent  implements OnInit {
 
   addUserFailed = false;
   addUserForm: FormGroup;
@@ -17,7 +19,9 @@ export class AddUserComponent implements OnInit {
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private userService: UserService,
+              private errorService: ErrorService) {
     if (!this.addUserFailed) {
       this.router.navigate(['/add-user']);
     }
@@ -25,10 +29,10 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.addUserForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      empId: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      designation: ['']
+      username: ['', Validators.required],
+      fname: ['', Validators.required],
+      lname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -39,12 +43,23 @@ export class AddUserComponent implements OnInit {
     if (this.addUserForm.invalid) {
       return;
     }
-
     this.loading = true;
-
     // addUserFailed to true while catching the error
     // loading to false while catching the error
-
+    this.userService.createUser(this.addUserForm.getRawValue())
+        .pipe()
+        .subscribe(
+        (response) => {
+        },
+            (error) => {
+              if (error) {
+                this.errorService.goToErrorPage({
+                  error: {
+                    externalErrorCode: 'add-user-error'
+                  },
+                });
+              }
+            });
   }
 
   get f() {

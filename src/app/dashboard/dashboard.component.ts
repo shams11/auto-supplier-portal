@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { User } from '../common/models/user';
 import { UserService } from '../service/user.service';
+import { DashboardService } from '../service/dashboard.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,11 +12,17 @@ import { UserService } from '../service/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-    constructor(private router: Router,
+    brandImage: any;
+    constructor(private router: Router, private dashboardService: DashboardService,
                 private userService: UserService) {
     }
 
     ngOnInit() {
+        this.brandImage = this.dashboardService
+            .getImage('d68bb9c6-6e80-4969-8e1e-52cb88e276e7')
+            .subscribe((image: any) => {
+                this.brandImage = image;
+            });
     }
 
     // toyotaLogoClicked() {
@@ -30,4 +37,6 @@ export class DashboardComponent implements OnInit {
             // console.log('users => ' + JSON.stringify(users, undefined, 2));
         });
     }
+
+
 }

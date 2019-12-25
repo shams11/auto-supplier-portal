@@ -10,13 +10,13 @@ import { Constants } from '../common/constants';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
-    constructor(private httpClient: HttpClient,
+    constructor(private http: HttpClient,
                 private configService: ConfigService) {
     }
 
     authenticate(username, password): Observable<any> {
         const params = this.getHttpParams(username, password);
-        return this.httpClient.post<User>(this.configService.getLoginUrl(),
+        return this.http.post<User>(this.configService.getLoginUrl(),
             params,
             this.getHttpOptions(username, password))
             .pipe(

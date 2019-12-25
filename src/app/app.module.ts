@@ -16,6 +16,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToyotaComponent } from './auto-brands/toyota/dashboard/toyota.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-interceptor.service';
+import { AddBrandComponent } from './add-brand/add-brand.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-inter
         AlertComponent,
         DashboardComponent,
         ToyotaComponent,
-        AddUserComponent
+        AddUserComponent,
+        AddBrandComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule,
