@@ -18,6 +18,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-interceptor.service';
 import { AddBrandComponent } from './add-brand/add-brand.component';
 import { ErrorComponent } from './error/error.component';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { ErrorComponent } from './error/error.component';
         ToyotaComponent,
         AddUserComponent,
         AddBrandComponent,
-        ErrorComponent
+        ErrorComponent,
+        SuccessComponent
     ],
     imports: [
         BrowserModule,

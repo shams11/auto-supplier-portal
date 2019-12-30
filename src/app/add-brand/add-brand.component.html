@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <label>Upload Brand logo </label>
-      <input type="file" formControlName="file" class="form-control"
+      <input type="file" formControlName="file" class="form-control" (change)="onFileSelected($event)"
              [ngClass]="{ 'is-invalid': submitted && f.file.errors }"/>
       <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
         <div *ngIf="f.file.errors.required">Brand logo is required</div>

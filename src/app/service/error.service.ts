@@ -13,7 +13,7 @@ export class ErrorService {
       queryParams: {
         errorCode: errorCode
       },
-      skipLocationChange: true
+       skipLocationChange: true
     });
   }
 }

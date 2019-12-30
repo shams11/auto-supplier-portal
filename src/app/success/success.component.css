@@ -1,0 +1,52 @@
+.main-container {
+    color: #6A6D70;
+    font-size: 16px;
+    height: 20vh;
+    background-color: #F2F2F2;
+}
+
+.success-icon {
+    background-color: #FFFFFF;
+    border: 2px solid #089812;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    background-image: url("../../assets/images/checkmark-green.png");
+    background-position: center;
+    background-size: 27px 21px;
+    background-repeat: no-repeat;
+}
+
+.error-icon {
+    color: #DB524B;
+    font-size: 41px;
+}
+
+.after-submit-message {
+    border-width: 1px 1px 1px 6px;
+    border-style: solid;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    height: 62px;
+    color: #000000;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.success-submit-message {
+    border-color: #089812;
+}
+
+.error-submit-message {
+    border-color: #DB524B;
+}
+
+
+
+
+
+
+
+

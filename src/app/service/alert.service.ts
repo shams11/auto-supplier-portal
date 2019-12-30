@@ -34,10 +34,10 @@ export class AlertService {
                 this.message = 'Username or password is incorrect';
                 break;
             case 500:
-                this.message = 'Server error';
+                this.message = error.error.message;
                 break;
             default:
-                this.message = 'Server error';
+                this.message = error.error.message;
                 return throwError(error);
         }
     }

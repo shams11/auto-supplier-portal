@@ -12,16 +12,32 @@ import { DashboardService } from '../service/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
-    brandImage: any;
+    imageToShow: any;
     constructor(private router: Router, private dashboardService: DashboardService,
                 private userService: UserService) {
     }
 
     ngOnInit() {
-        this.brandImage = this.dashboardService
-            .getImage('d68bb9c6-6e80-4969-8e1e-52cb88e276e7')
-            .subscribe((image: any) => {
-                this.brandImage = image;
+        this.getImageFromService();
+    }
+
+    createImageFromBlob(image: Blob) {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+            this.imageToShow = reader.result;
+        }, false);
+
+        if (image) {
+            reader.readAsDataURL(image);
+        }
+    }
+
+    getImageFromService() {
+        this.dashboardService.getImage('e12c6679-425c-48fa-bc25-3e555ea5abf3')
+            .subscribe(data => {
+                this.createImageFromBlob(data);
+            }, error => {
+                console.log(error);
             });
     }
 

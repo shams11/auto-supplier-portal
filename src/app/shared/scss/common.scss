@@ -1,0 +1,11 @@
+@import './colors.scss';
+
+$bold-weight: 500;
+$left-panel-width: 259px;
+$right-panel-width: 505px;
+$right-panel-margin: 12px;
+$right-panel-min-width: 320px;
+$right-panel-resolved-min-width: calc(#{$right-panel-min-width} - (2 * #{$right-panel-margin}));
+$button-top-margin: 25px;
+$normal-border: 1px solid $blue1;
+$error-border: 1px solid $red1;
