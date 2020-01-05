@@ -8,10 +8,10 @@ import {SuccessService} from '../service/success.service';
 
 @Component({
   selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class AddUserComponent  implements OnInit,  OnDestroy {
+export class UserComponent  implements OnInit,  OnDestroy {
 
   addUserFailed = false;
   addUserForm: FormGroup;

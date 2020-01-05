@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { User } from '../common/models/user';
 import { UserService } from '../service/user.service';
 import { DashboardService } from '../service/dashboard.service';
+import {Constants} from '../common/constants';
+import { Brand } from '../common/models/brand';
 
 @Component({
     selector: 'app-dashboard',
@@ -13,12 +15,14 @@ import { DashboardService } from '../service/dashboard.service';
 export class DashboardComponent implements OnInit {
 
     imageToShow: any;
+    brands: Brand;
     constructor(private router: Router, private dashboardService: DashboardService,
                 private userService: UserService) {
     }
 
     ngOnInit() {
-        this.getImageFromService();
+         // this.getImageFromService();
+         this.getAllBrands();
     }
 
     createImageFromBlob(image: Blob) {
@@ -26,14 +30,13 @@ export class DashboardComponent implements OnInit {
         reader.addEventListener('load', () => {
             this.imageToShow = reader.result;
         }, false);
-
         if (image) {
             reader.readAsDataURL(image);
         }
     }
 
     getImageFromService() {
-        this.dashboardService.getImage('e12c6679-425c-48fa-bc25-3e555ea5abf3')
+        this.dashboardService.getImage('8dc069d9-6df9-4d51-80ec-845ed0b4e93c')
             .subscribe(data => {
                 this.createImageFromBlob(data);
             }, error => {
@@ -55,4 +58,15 @@ export class DashboardComponent implements OnInit {
     }
 
 
+    private getAllBrands() {
+        this.dashboardService.getAllBrandsByOrg(sessionStorage.getItem(Constants.ORG_ID))
+            .pipe()
+            .subscribe(data => {
+                this.brands = data;
+                //    console.log(' ========>> ' + JSON.stringify(data, null, 4));
+                this.createImageFromBlob(data.logo);
+            }, error => {
+                console.log(error);
+            });
+    }
 }

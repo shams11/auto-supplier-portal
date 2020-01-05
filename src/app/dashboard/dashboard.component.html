@@ -1,22 +1,10 @@
 <div class="dashboard-container" fxLayout="row wrap" fxLayoutAlign="spave-evenly centre" fxLayoutGap="150px">
-  <div class="dashboard-element">
-    <a>
-      <img  [routerLink]="['/toyota']" src="./assets/images/auto-brands/toyota/toyota-logo.png"/>
-    </a>
-  </div>
-  <div class="dashboard-element">
-    <a>
-      <img  [routerLink]="['/maruti']"  [src]="imageToShow"  />
-    </a>
-  </div>
-  <div class="dashboard-element">
-    <a>
-      <img  [routerLink]="['/hyundi']" src="./assets/images/auto-brands/hyundi/hyundi-logo.png"  />
-    </a>
-  </div>
-  <div class="dashboard-element">
-    <a>
-      <img  [routerLink]="['/mahindra']" src="./assets/images/auto-brands/mahindra/mahindra-logo.png"  />
-    </a>
-  </div>
+    <div *ngFor=" let brand of brands">
+        <div class="dashboard-element">
+            <a>
+                <img [routerLink]="['/' + brand.name]" src="http://localhost:9090/v1/brands/image/{{brand.id}}" />
+            </a>
+            <li> {{brand.name}} </li>
+        </div>
+    </div>
 </div>

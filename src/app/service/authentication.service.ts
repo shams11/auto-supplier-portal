@@ -24,6 +24,7 @@ export class AuthenticationService {
                     userData => {
                         sessionStorage.setItem(Constants.USERNAME, username);
                         sessionStorage.setItem(Constants.ROLE, userData[ Constants.ROLES ][ 0 ].uniqueName);
+                        sessionStorage.setItem(Constants.ORG_ID, userData.org.id)
                         const basicAuthString = Constants.BASIC_AUTH_TYPE + btoa(username + ':' + password);
                         sessionStorage.setItem(Constants.BASIC_AUTH_STRING, basicAuthString);
                         return userData;
@@ -50,6 +51,7 @@ export class AuthenticationService {
         sessionStorage.removeItem(Constants.USERNAME);
         sessionStorage.removeItem(Constants.ROLE);
         sessionStorage.removeItem(Constants.BASIC_AUTH_STRING);
+        sessionStorage.removeItem(Constants.ORG_ID);
     }
 
     getHttpParams(username: string, password: string) {

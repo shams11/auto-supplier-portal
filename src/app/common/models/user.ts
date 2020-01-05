@@ -1,3 +1,5 @@
+import { Organization } from './organization';
+
 export class User {
     id?: string;
     username: string;
@@ -7,4 +9,5 @@ export class User {
     lastName?: string;
     email?: string;
     timeCreated?: string;
+    org: Organization;
 }

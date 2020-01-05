@@ -6,8 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGaurdService } from './service/auth-gaurd.service';
 import { ToyotaComponent } from './auto-brands/toyota/dashboard/toyota.component';
-import { AddUserComponent } from './add-user/add-user.component';
-import { AddBrandComponent } from './add-brand/add-brand.component';
+import { UserComponent } from './user/user.component';
+import { BrandComponent } from './brand/brand.component';
 import { ErrorComponent } from './error/error.component';
 import {SuccessComponent} from './success/success.component';
 
@@ -16,8 +16,8 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent, canActivate: [AuthGaurdService] },
     { path: 'toyota', component: ToyotaComponent, canActivate: [AuthGaurdService] },
-    { path: 'add-user', component: AddUserComponent, canActivate: [AuthGaurdService] },
-    { path: 'add-brand', component: AddBrandComponent, canActivate: [AuthGaurdService] },
+    { path: 'add-user', component: UserComponent, canActivate: [AuthGaurdService] },
+    { path: 'add-brand', component: BrandComponent, canActivate: [AuthGaurdService] },
     { path: 'error', component: ErrorComponent, canActivate: [AuthGaurdService] },
     { path: 'success', component: SuccessComponent, canActivate: [AuthGaurdService] }
 ];

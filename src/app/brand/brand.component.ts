@@ -8,10 +8,10 @@ import {SuccessService} from '../service/success.service';
 
 @Component({
   selector: 'app-add-brand',
-  templateUrl: './add-brand.component.html',
-  styleUrls: ['./add-brand.component.css']
+  templateUrl: './brand.component.html',
+  styleUrls: ['./brand.component.css']
 })
-export class AddBrandComponent implements OnInit, OnDestroy {
+export class BrandComponent implements OnInit, OnDestroy {
 
   addUserFailed = false;
   addBrandForm: FormGroup;
@@ -50,7 +50,6 @@ export class AddBrandComponent implements OnInit, OnDestroy {
         .pipe()
         .subscribe(
             (event) => {
-              // TODO : Redirect to success page
               if (event.type === HttpEventType.UploadProgress) {
                 // console.log('Uplaod Progress : ' + Math.round(event.loaded / event.total * 100) + '%');
               } else if (event.type === HttpEventType.Response) {
@@ -59,8 +58,7 @@ export class AddBrandComponent implements OnInit, OnDestroy {
               }
             }, (error) => {
               this.loading = false;
-              // this.alertService.error(error);
-              console.log(' error while adding brand logo ---> ' + error);
+              this.alertService.error(error);
             });
 
     // addUserFailed to true while catching the error
