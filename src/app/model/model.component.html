@@ -1,3 +1,42 @@
-<p>
-  model works!
-</p>
+<div class="add-user-form" fxLayout="column" fxLayoutAlign="space-evenly start">
+  <h2 class="add-user-form-element">Add New Model</h2>
+  <form [formGroup]="addModelForm" (ngSubmit)="createModel()">
+
+    <div class="add-user-form-element">
+      <label>Name </label>
+      <input type="text" formControlName="name" class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+      </div>
+    </div>
+
+    <div class="add-user-form-element">
+      <label>Select Brand </label>
+      <select class="custom-select" (change)="changeBrand($event)" formControlName="brand"
+              [ngClass]="{ 'is-invalid': submitted && f.brand.errors }">
+        <option value="">Choose Brand</option>
+        <option *ngFor="let brand of brands" [ngValue]="brand.name" [value]="brand.id">{{brand.name}}</option>
+      </select>
+      <div *ngIf="submitted && f.brand.errors" class="invalid-feedback">
+        <div *ngIf="f.brand.errors.required">Model Image is required</div>
+      </div>
+    </div>
+
+    <div class="add-user-form-element">
+      <label>Upload Brand logo </label>
+      <input type="file" formControlName="file" class="form-control" (change)="onFileSelected($event)"
+             [ngClass]="{ 'is-invalid': submitted && f.file.errors }"/>
+      <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
+        <div *ngIf="f.file.errors.required">Brand logo is required</div>
+      </div>
+    </div>
+
+    <div class="add-user-form-element">
+      <button class="btn btn-success" [disabled]="loading" (click)="createModel()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Add
+      </button>
+    </div>
+  </form>
+</div>

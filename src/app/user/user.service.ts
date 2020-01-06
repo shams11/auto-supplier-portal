@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../common/models/user';
-import { ConfigService } from './config.service';
+import { ConfigService } from '../service/config.service';
 import { Observable } from 'rxjs';
-import {ContentTypeConstants} from '../common/content-type-constants';
+import { ContentTypeConstants } from '../common/content-type-constants';
 
 @Injectable({
   providedIn: 'root'

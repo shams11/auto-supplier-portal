@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../service/config.service';
+import {Brand} from '../common/models/brand';
 
 @Injectable({
     providedIn: 'root'
@@ -18,4 +19,8 @@ export class BrandService {
       observe: 'events'
     });
   }
+
+    getAllBrandsByOrg(orgId: string): Observable<Brand> {
+        return this.http.get<Brand>(this.configService.getBrandsBaseUrl() + `?orgId=${orgId}`);
+    }
 }

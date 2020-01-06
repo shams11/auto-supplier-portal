@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AlertService} from '../service/alert.service';
-import {BrandService} from './brand.service';
-import {HttpEventType} from '@angular/common/http';
-import {SuccessService} from '../service/success.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertService } from '../service/alert.service';
+import { BrandService } from './brand.service';
+import { HttpEventType } from '@angular/common/http';
+import { SuccessService } from '../success/success.service';
 
 @Component({
   selector: 'app-brand',
@@ -13,7 +13,7 @@ import {SuccessService} from '../service/success.service';
 })
 export class BrandComponent implements OnInit, OnDestroy {
 
-  addUserFailed = false;
+  addBrandFailed = false;
   addBrandForm: FormGroup;
   loading = false;
   submitted = false;
@@ -24,7 +24,7 @@ export class BrandComponent implements OnInit, OnDestroy {
               private alertService: AlertService,
               private brandService: BrandService,
               private successService: SuccessService) {
-    if (!this.addUserFailed) {
+    if (!this.addBrandFailed) {
       this.router.navigate(['/brands']);
     }
   }
@@ -53,17 +53,13 @@ export class BrandComponent implements OnInit, OnDestroy {
               if (event.type === HttpEventType.UploadProgress) {
                 // console.log('Uplaod Progress : ' + Math.round(event.loaded / event.total * 100) + '%');
               } else if (event.type === HttpEventType.Response) {
-                console.log(event);
+               // console.log(event);
                 this.successService.goToSuccessPage('You have successfully uploaded brand logo');
               }
             }, (error) => {
               this.loading = false;
               this.alertService.error(error);
             });
-
-    // addUserFailed to true while catching the error
-    // loading to false while catching the error
-
   }
 
   get f() {
