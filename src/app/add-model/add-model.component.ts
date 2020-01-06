@@ -11,10 +11,10 @@ import { ModelService } from './model.service';
 
 @Component({
   selector: 'app-model',
-  templateUrl: './model.component.html',
-  styleUrls: ['./model.component.css']
+  templateUrl: './add-model.component.html',
+  styleUrls: ['./add-model.component.css']
 })
-export class ModelComponent implements OnInit, OnDestroy {
+export class AddModelComponent implements OnInit, OnDestroy {
 
   addModelFailed = false;
   addModelForm: FormGroup;
