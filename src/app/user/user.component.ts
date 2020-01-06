@@ -25,7 +25,7 @@ export class UserComponent  implements OnInit,  OnDestroy {
               private errorService: ErrorService,
               private successService: SuccessService) {
     if (!this.addUserFailed) {
-      this.router.navigate(['/add-user']);
+      this.router.navigate(['/users']);
     }
   }
 

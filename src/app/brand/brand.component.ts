@@ -7,7 +7,7 @@ import {HttpEventType} from '@angular/common/http';
 import {SuccessService} from '../service/success.service';
 
 @Component({
-  selector: 'app-add-brand',
+  selector: 'app-brand',
   templateUrl: './brand.component.html',
   styleUrls: ['./brand.component.css']
 })
@@ -25,7 +25,7 @@ export class BrandComponent implements OnInit, OnDestroy {
               private brandService: BrandService,
               private successService: SuccessService) {
     if (!this.addUserFailed) {
-      this.router.navigate(['/add-brand']);
+      this.router.navigate(['/brands']);
     }
   }
 

@@ -2,7 +2,7 @@
     <div *ngFor=" let brand of brands">
         <div class="dashboard-element">
             <a>
-                <img [routerLink]="['/' + brand.name]" src="http://localhost:9090/v1/brands/image/{{brand.id}}" />
+                <img [routerLink]="['/models']" src="http://localhost:9090/v1/brands/image/{{brand.id}}" />
             </a>
         </div>
         <br>

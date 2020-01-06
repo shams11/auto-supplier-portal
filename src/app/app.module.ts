@@ -19,6 +19,7 @@ import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-inter
 import { BrandComponent } from './brand/brand.component';
 import { ErrorComponent } from './error/error.component';
 import { SuccessComponent } from './success/success.component';
+import { ModelComponent } from './model/model.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { SuccessComponent } from './success/success.component';
         UserComponent,
         BrandComponent,
         ErrorComponent,
-        SuccessComponent
+        SuccessComponent,
+        ModelComponent
     ],
     imports: [
         BrowserModule,
