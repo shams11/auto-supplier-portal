@@ -13,13 +13,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertComponent } from './alert/alert.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ToyotaComponent } from './auto-brands/toyota/dashboard/toyota.component';
 import { UserComponent } from './user/user.component';
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-interceptor.service';
 import { BrandComponent } from './brand/brand.component';
 import { ErrorComponent } from './error/error.component';
 import { SuccessComponent } from './success/success.component';
 import { AddModelComponent } from './add-model/add-model.component';
+import { ModelDashboardComponent } from './modeldashboard/modeldashboard.component';
 
 @NgModule({
     declarations: [
@@ -30,12 +30,12 @@ import { AddModelComponent } from './add-model/add-model.component';
         LogoutComponent,
         AlertComponent,
         DashboardComponent,
-        ToyotaComponent,
         UserComponent,
         BrandComponent,
         ErrorComponent,
         SuccessComponent,
-        AddModelComponent
+        AddModelComponent,
+        ModelDashboardComponent
     ],
     imports: [
         BrowserModule,

@@ -10,6 +10,7 @@ import { BrandComponent } from './brand/brand.component';
 import { ErrorComponent } from './error/error.component';
 import { SuccessComponent } from './success/success.component';
 import { AddModelComponent } from './add-model/add-model.component';
+import { ModelDashboardComponent } from './modeldashboard/modeldashboard.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, canActivate: [AuthGaurdService] },
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'logout', component: LogoutComponent, canActivate: [AuthGaurdService] },
     { path: 'users', component: UserComponent, canActivate: [AuthGaurdService] },
     { path: 'brands', component: BrandComponent, canActivate: [AuthGaurdService] },
-    { path: 'models', component: AddModelComponent, canActivate: [AuthGaurdService] },
+    { path: 'add-models', component: AddModelComponent, canActivate: [AuthGaurdService] },
+    { path: 'models', component: ModelDashboardComponent, canActivate: [AuthGaurdService] },
     { path: 'error', component: ErrorComponent, canActivate: [AuthGaurdService] },
     { path: 'success', component: SuccessComponent, canActivate: [AuthGaurdService] }
 ];

@@ -31,7 +31,7 @@ export class AddModelComponent implements OnInit, OnDestroy {
               private modelService: ModelService,
               private successService: SuccessService) {
     if (!this.addModelFailed) {
-      this.router.navigate(['/models']);
+      this.router.navigate(['/add-models']);
     }
   }
 

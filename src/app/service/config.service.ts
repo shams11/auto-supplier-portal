@@ -21,4 +21,8 @@ export class ConfigService {
     public getBrandsBaseUrl(): string {
         return 'http://localhost:9090/v1/brands';
     }
+
+    getModelsBaseUrl() {
+        return 'http://localhost:9090/v1/models';
+    }
 }

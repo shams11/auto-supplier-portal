@@ -18,10 +18,10 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-         this.getAllBrands();
+         this.getAllBrandsForLoggedInUser();
     }
 
-    private getAllBrands() {
+    private getAllBrandsForLoggedInUser() {
         this.brandService.getAllBrandsByOrg(sessionStorage.getItem(Constants.ORG_ID))
             .pipe()
             .subscribe(data => {
