@@ -2,7 +2,7 @@
     <div *ngFor=" let brand of brands">
         <div class="dashboard-element">
             <a>
-                <img [routerLink]="['/models']" src="http://localhost:9090/v1/brands/image/{{brand.id}}" />
+                <img src="http://localhost:9090/v1/brands/image/{{brand.id}}" (click)="selectedBrand(brand.id)" />
             </a>
         </div>
         <br>

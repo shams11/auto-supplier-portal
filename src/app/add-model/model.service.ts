@@ -20,6 +20,6 @@ export class ModelService {
   }
 
   getAllModelsByBrand(brandId: string): Observable<Model> {
-    return this.http.get<Model>(this.configService.getModelsBaseUrl() + '?brandId=c70d28c5-551a-4489-b135-044af756ae65');
+    return this.http.get<Model>(this.configService.getModelsBaseUrl() + `?brandId=${brandId}`);
   }
 }

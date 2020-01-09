@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { ModelService } from '../add-model/model.service';
+import { ErrorService } from '../error/error.service';
 
 @Component({
   selector: 'app-modeldashboard',
@@ -11,10 +14,15 @@ export class ModelDashboardComponent implements OnInit {
   private brandId: string;
   private models: any;
 
-  constructor(private modelService: ModelService) {
+  constructor(private modelService: ModelService,
+              private errorService: ErrorService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.brandId = params.brandId;
+    });
     this.getAllModelsForLoggedInUser(this.brandId);
   }
 
@@ -24,8 +32,7 @@ export class ModelDashboardComponent implements OnInit {
         .subscribe(data => {
           this.models = data;
         }, error => {
-          console.log(error);
+          this.errorService.goToErrorPage(error);
         });
   }
-
 }

@@ -20,6 +20,8 @@ import { ErrorComponent } from './error/error.component';
 import { SuccessComponent } from './success/success.component';
 import { AddModelComponent } from './add-model/add-model.component';
 import { ModelDashboardComponent } from './modeldashboard/modeldashboard.component';
+import { AddVariantComponent } from './add-variant/add-variant.component';
+import { VariantDashboardComponent } from './variantdashboard/variantdashboard.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +37,9 @@ import { ModelDashboardComponent } from './modeldashboard/modeldashboard.compone
         ErrorComponent,
         SuccessComponent,
         AddModelComponent,
-        ModelDashboardComponent
+        ModelDashboardComponent,
+        AddVariantComponent,
+        VariantDashboardComponent
     ],
     imports: [
         BrowserModule,

@@ -7,8 +7,8 @@
                 <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Home</a></li>
                 <li><a *ngIf="loginService.isAdmin()" routerLink="/users" class="nav-link">Add User</a></li>
                 <li><a *ngIf="loginService.isAdmin()" routerLink="/brands" class="nav-link">Add Brand</a></li>
-                <li><a *ngIf="loginService.isAdmin()" routerLink="/add-models" class="nav-link">Add Model</a></li>
-                <li><a *ngIf="loginService.isAdmin()" routerLink="/models" class="nav-link">View Models</a></li>
+                <li><a *ngIf="loginService.isAdmin()" routerLink="/add-model" class="nav-link">Add Model</a></li>
+                <li><a *ngIf="loginService.isAdmin()" routerLink="/add-variant" class="nav-link">Add Variant</a></li>
             </ul>
         </div>
         <ul class="navbar-nav">

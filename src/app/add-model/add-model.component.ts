@@ -8,6 +8,7 @@ import { Constants } from '../common/constants';
 import { Brand } from '../common/models/brand';
 import { HttpEventType } from '@angular/common/http';
 import { ModelService } from './model.service';
+import { ErrorService } from '../error/error.service';
 
 @Component({
   selector: 'app-model',
@@ -29,9 +30,10 @@ export class AddModelComponent implements OnInit, OnDestroy {
               private alertService: AlertService,
               private brandService: BrandService,
               private modelService: ModelService,
-              private successService: SuccessService) {
+              private successService: SuccessService,
+              private errorService: ErrorService) {
     if (!this.addModelFailed) {
-      this.router.navigate(['/add-models']);
+      this.router.navigate(['/add-model']);
     }
   }
 
@@ -51,7 +53,7 @@ export class AddModelComponent implements OnInit, OnDestroy {
         .subscribe(data => {
           this.brands = data;
         }, error => {
-          console.log(error);
+          this.errorService.goToErrorPage(error);
         });
   }
 
@@ -73,7 +75,6 @@ export class AddModelComponent implements OnInit, OnDestroy {
     if (this.addModelForm.invalid) {
       return;
     }
-    console.log(JSON.stringify(this.addModelForm.value, null, 4));
     this.loading = true;
 
     const imageData = new FormData();
@@ -95,7 +96,6 @@ export class AddModelComponent implements OnInit, OnDestroy {
   }
 
   changeBrand(event) {
-    console.log(event);
     this.brand.setValue(event.target.value, {
       onlySelf: true
     });
