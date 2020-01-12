@@ -24,4 +24,8 @@ export class VariantService {
   private buildBaseUrl(modelId) {
     return this.configService.getModelsBaseUrl() + `/${modelId}/variants`;
   }
+
+  getAllVariantsByModel(modelId: string): Observable<Variant> {
+    return this.http.get<Variant>(this.configService.getVariantsBaseUrl() + `?modelId=${modelId}`);
+  }
 }

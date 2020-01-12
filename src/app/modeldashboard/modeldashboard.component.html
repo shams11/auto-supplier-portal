@@ -2,7 +2,7 @@
   <div *ngFor=" let model of models">
     <div class="dashboard-element">
       <a>
-        <img [routerLink]="['/models']" src="http://localhost:9090/v1/models/image/{{model.id}}" />
+        <img [routerLink]="['/models']" src="http://localhost:9090/v1/models/image/{{model.id}}" (click)="selectedModel(model)"/>
       </a>
     </div>
     <span class="dashboard-element-label">{{model.name}}</span>

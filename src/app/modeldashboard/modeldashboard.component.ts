@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModelService } from '../add-model/model.service';
 import { ErrorService } from '../error/error.service';
+import { Model } from '../common/models/model';
 
 @Component({
   selector: 'app-modeldashboard',
@@ -16,7 +17,8 @@ export class ModelDashboardComponent implements OnInit {
 
   constructor(private modelService: ModelService,
               private errorService: ErrorService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -34,5 +36,9 @@ export class ModelDashboardComponent implements OnInit {
         }, error => {
           this.errorService.goToErrorPage(error);
         });
+  }
+
+  selectedModel(model: Model) {
+    this.router.navigateByUrl('/variants?modelId=' + model.id + '&modelName=' + model.name);
   }
 }
