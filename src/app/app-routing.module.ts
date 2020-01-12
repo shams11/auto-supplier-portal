@@ -13,6 +13,7 @@ import { AddModelComponent } from './add-model/add-model.component';
 import { ModelDashboardComponent } from './modeldashboard/modeldashboard.component';
 import { AddVariantComponent } from './add-variant/add-variant.component';
 import { VariantDashboardComponent } from './variantdashboard/variantdashboard.component';
+import { AddPartComponent } from './add-part/add-part.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, canActivate: [AuthGaurdService] },
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'brands', component: BrandComponent, canActivate: [AuthGaurdService] },
     { path: 'add-model', component: AddModelComponent, canActivate: [AuthGaurdService] },
     { path: 'add-variant', component: AddVariantComponent, canActivate: [AuthGaurdService] },
+    { path: 'add-part', component: AddPartComponent, canActivate: [AuthGaurdService] },
     { path: 'models', component: ModelDashboardComponent, canActivate: [AuthGaurdService] },
     { path: 'variants', component: VariantDashboardComponent, canActivate: [AuthGaurdService] },
     { path: 'error', component: ErrorComponent, canActivate: [AuthGaurdService] },

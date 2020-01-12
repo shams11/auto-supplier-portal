@@ -1,28 +1,28 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { AlertService } from '../service/alert.service';
-import { SuccessService } from '../success/success.service';
-import { VariantService } from './variant.service';
-import { ErrorService } from '../error/error.service';
-import { Constants } from '../common/constants';
 import { BrandService } from '../brand/brand.service';
 import { ModelService } from '../add-model/model.service';
+import { VariantService } from '../add-variant/variant.service';
+import { SuccessService } from '../success/success.service';
+import { ErrorService } from '../error/error.service';
+import { Constants } from '../common/constants';
+import { PartService } from './part.service';
 
 @Component({
-  selector: 'app-add-variant',
-  templateUrl: './add-variant.component.html',
-  styleUrls: ['./add-variant.component.css']
+  selector: 'app-add-part',
+  templateUrl: './add-part.component.html',
+  styleUrls: ['./add-part.component.css']
 })
-export class AddVariantComponent implements OnInit, OnDestroy {
+export class AddPartComponent implements OnInit, OnDestroy {
 
-  addVariantFailed = false;
-  addVariantForm: FormGroup;
+  addPartForm: FormGroup;
   loading = false;
   submitted = false;
   models: any;
   brands: any;
+  variants: any;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -31,17 +31,27 @@ export class AddVariantComponent implements OnInit, OnDestroy {
               private modelService: ModelService,
               private variantService: VariantService,
               private successService: SuccessService,
-              private errorService: ErrorService) { }
+              private errorService: ErrorService,
+              private partService: PartService) { }
 
   ngOnInit() {
-    this.addVariantForm = this.formBuilder.group({
+    this.addPartForm = this.formBuilder.group({
       name: ['', Validators.required],
       brand: ['', Validators.required],
       modelId: ['', Validators.required],
+      variantId: ['', Validators.required],
       code: ['', Validators.required],
       description: ['', Validators.required]
     });
     this.getAllBrandsForLoggedInUser();
+  }
+
+  get f() {
+    return this.addPartForm.controls;
+  }
+
+  ngOnDestroy() {
+    this.alertService.clear();
   }
 
   // TODO: Need to commonaize this code. Also present in add-model.component.ts
@@ -55,33 +65,6 @@ export class AddVariantComponent implements OnInit, OnDestroy {
         });
   }
 
-  createVariant() {
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.addVariantForm.invalid) {
-      return;
-    }
-    this.loading = true;
-
-    this.variantService.createVariant(this.addVariantForm.value, this.modelId.value)
-        .pipe()
-        .subscribe(
-            (variant) => {
-              this.successService.goToSuccessPage('You have successfully created variant');
-            }, (error) => {
-              this.loading = false;
-              this.alertService.error(error);
-            });
-  }
-
-  get f() {
-    return this.addVariantForm.controls;
-  }
-
-  ngOnDestroy() {
-    this.alertService.clear();
-  }
-
   getAllModelsByBrand(brandId) {
     this.modelService.getAllModelsByBrand(brandId)
         .pipe()
@@ -90,6 +73,25 @@ export class AddVariantComponent implements OnInit, OnDestroy {
         }, error => {
           this.errorService.goToErrorPage(error);
         });
+  }
+  createPart() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.addPartForm.invalid) {
+      return;
+    }
+    console.log(JSON.stringify(this.addPartForm.value, null, 4));
+    this.loading = true;
+
+    this.partService.createVariant(this.addPartForm.value, this.variantId.value)
+        .pipe()
+        .subscribe(
+            (variant) => {
+              this.successService.goToSuccessPage('You have successfully created part');
+            }, (error) => {
+              this.loading = false;
+              this.alertService.error(error);
+            });
   }
 
   changeBrand(event) {
@@ -101,17 +103,39 @@ export class AddVariantComponent implements OnInit, OnDestroy {
 
   // Getter method to access formcontrols
   get brand() {
-    return this.addVariantForm.get('brand');
+    return this.addPartForm.get('brand');
   }
 
   changeModel(event) {
     this.modelId.setValue(event.target.value, {
       onlySelf: true
     });
+    this.getAllVariantsByModel(this.modelId.value);
   }
 
   // Getter method to access formcontrols
   get modelId() {
-    return this.addVariantForm.get('modelId');
+    return this.addPartForm.get('modelId');
+  }
+
+  changeVariant(event) {
+    this.variantId.setValue(event.target.value, {
+      onlySelf: true
+    });
+  }
+
+  // Getter method to access formcontrols
+  get variantId() {
+    return this.addPartForm.get('variantId');
+  }
+
+  private getAllVariantsByModel(modelId) {
+    this.variantService.getAllVariantsByModel(modelId)
+        .pipe()
+        .subscribe(data => {
+          this.variants = data;
+        }, error => {
+          this.errorService.goToErrorPage(error);
+        });
   }
 }

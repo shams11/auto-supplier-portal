@@ -29,4 +29,8 @@ export class ConfigService {
     getVariantsBaseUrl() {
         return 'http://localhost:9090/v1/variants';
     }
+
+    getPartsBaseUrl() {
+        return 'http://localhost:9090/v1/parts';
+    }
 }

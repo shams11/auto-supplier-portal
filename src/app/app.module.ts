@@ -22,6 +22,7 @@ import { AddModelComponent } from './add-model/add-model.component';
 import { ModelDashboardComponent } from './modeldashboard/modeldashboard.component';
 import { AddVariantComponent } from './add-variant/add-variant.component';
 import { VariantDashboardComponent } from './variantdashboard/variantdashboard.component';
+import { AddPartComponent } from './add-part/add-part.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { VariantDashboardComponent } from './variantdashboard/variantdashboard.c
         AddModelComponent,
         ModelDashboardComponent,
         AddVariantComponent,
-        VariantDashboardComponent
+        VariantDashboardComponent,
+        AddPartComponent
     ],
     imports: [
         BrowserModule,
