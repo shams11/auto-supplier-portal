@@ -1,0 +1,21 @@
+.variants-name {
+    padding: 30px;
+}
+.dashboard-container {
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+}
+
+.dashboard-element {
+    height: 200px;
+    width: 200px;
+    border-style: outset;
+    border-width: 1px;
+    border-color: #636363;
+}
+
+.dashboard-element-label {
+    padding: 50px;
+    background-color: #ACD4ED;
+}

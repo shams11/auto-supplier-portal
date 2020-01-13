@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorService } from '../error/error.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { VariantService } from '../add-variant/variant.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class VariantDashboardComponent implements OnInit {
 
   constructor(private variantService: VariantService,
               private errorService: ErrorService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -34,5 +36,9 @@ export class VariantDashboardComponent implements OnInit {
         }, error => {
           this.errorService.goToErrorPage(error);
         });
+  }
+
+  selectedModel(variant) {
+    this.router.navigateByUrl('/parts?variantId=' + variant.id + '&variantCode=' + variant.code);
   }
 }

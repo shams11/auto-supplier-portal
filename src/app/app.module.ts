@@ -23,6 +23,7 @@ import { ModelDashboardComponent } from './modeldashboard/modeldashboard.compone
 import { AddVariantComponent } from './add-variant/add-variant.component';
 import { VariantDashboardComponent } from './variantdashboard/variantdashboard.component';
 import { AddPartComponent } from './add-part/add-part.component';
+import { PartDashboardComponent } from './partdashboard/partDashboard.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { AddPartComponent } from './add-part/add-part.component';
         ModelDashboardComponent,
         AddVariantComponent,
         VariantDashboardComponent,
-        AddPartComponent
+        AddPartComponent,
+        PartDashboardComponent
     ],
     imports: [
         BrowserModule,

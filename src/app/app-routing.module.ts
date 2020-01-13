@@ -14,6 +14,7 @@ import { ModelDashboardComponent } from './modeldashboard/modeldashboard.compone
 import { AddVariantComponent } from './add-variant/add-variant.component';
 import { VariantDashboardComponent } from './variantdashboard/variantdashboard.component';
 import { AddPartComponent } from './add-part/add-part.component';
+import { PartDashboardComponent } from './partdashboard/partDashboard.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, canActivate: [AuthGaurdService] },
@@ -26,6 +27,7 @@ const routes: Routes = [
     { path: 'add-part', component: AddPartComponent, canActivate: [AuthGaurdService] },
     { path: 'models', component: ModelDashboardComponent, canActivate: [AuthGaurdService] },
     { path: 'variants', component: VariantDashboardComponent, canActivate: [AuthGaurdService] },
+    { path: 'parts', component: PartDashboardComponent, canActivate: [AuthGaurdService] },
     { path: 'error', component: ErrorComponent, canActivate: [AuthGaurdService] },
     { path: 'success', component: SuccessComponent, canActivate: [AuthGaurdService] }
 ];

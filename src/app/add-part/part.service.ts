@@ -24,4 +24,8 @@ export class PartService {
   private buildBaseUrl(variantId) {
     return this.configService.getVariantsBaseUrl() + `/${variantId}/parts`;
   }
+
+  getAllPartsByVariantId(variantId): Observable<Part> {
+    return this.http.get<Part>(this.configService.getPartsBaseUrl() + `?variantId=${variantId}`);
+  }
 }
