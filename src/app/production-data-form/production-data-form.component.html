@@ -1,0 +1,58 @@
+<script src="../add-part/add-part.component.spec.ts"></script>
+<div class="production-dashboard">
+    <div class="page-heading" fxLayoutAlign="center">Production Data Sheet</div>
+    <div class="horizontal-line"></div>
+    <div fxLayout="row" fxLayoutGap="700px">
+        <div class="user-details-container">
+            <div>User code: </div>
+            <div>User Name: </div>
+            <div> Number: </div>
+            <div>Code: </div>
+        </div>
+    </div>
+    <div class="horizontal-line"></div>
+    <div class="production-sheet-header" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+        <label>ITEM</label>
+        <label>Requirement</label>
+        <label>Data Type</label>
+        <label>Data for sample no.</label>
+    </div>
+    <div class="horizontal-line"></div>
+
+    <form [formGroup]="productionDataForm" (ngSubmit)="createProductionData()">
+        <div *ngFor="let dimension of partDimensions; let i = index">
+            <div class="dimension-heading-container" fxLayout="row" fxLayoutAlign="start center">
+                <div> {{i + 1}} </div>
+                <div class="dimension-heading"> {{dimension.groupName}} </div>
+            </div>
+            <div class="horizontal-line"></div>
+            <div class="dimensions-container" *ngFor="let value of dimension.values; let j = index">
+                <div class="dimension-index-column">{{j + 1}}</div>
+                <div fxLayout="row" *ngFor="let val of value; let j = index">
+                    <div *ngIf="val.name === 'sub-heading'; else displayDimensions">
+                        <div class="dimension-heading-container"> {{val.heading}}</div>
+                    </div>
+                    <ng-template #displayDimensions>
+                        <div class="dimension-name"> {{val.name}} {{val.standardValue}}</div>
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+                            <div *ngFor="let input of [0,1,2,3,4]; let k = index">
+                                <input class="production-input" type="text"
+                                       (change)='update($event.originalTarget.value, i,j,k)'/>
+
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="horizontal-line"></div>
+            <div class="vertical-line"></div>
+        </div>
+        <div class="add-user-form-element">
+            <button class="btn btn-success"  (click)="createProductionData()">
+                <span  class="spinner-border spinner-border-sm mr-1"></span>
+                Add
+            </button>
+        </div>
+    </form>
+</div>

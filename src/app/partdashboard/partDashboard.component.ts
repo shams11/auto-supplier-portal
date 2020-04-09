@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ErrorService } from '../error/error.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { PartService } from '../add-part/part.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class PartDashboardComponent implements OnInit {
 
   constructor(private partService: PartService,
               private errorService: ErrorService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -35,5 +36,9 @@ export class PartDashboardComponent implements OnInit {
         }, error => {
           this.errorService.goToErrorPage(error);
         });
+  }
+
+  onPartSelect(partId: string) {
+    this.router.navigateByUrl('/data-sheet-form?partId=' + partId);
   }
 }

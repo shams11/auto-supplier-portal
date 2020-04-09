@@ -15,6 +15,7 @@ import { AddVariantComponent } from './add-variant/add-variant.component';
 import { VariantDashboardComponent } from './variantdashboard/variantdashboard.component';
 import { AddPartComponent } from './add-part/add-part.component';
 import { PartDashboardComponent } from './partdashboard/partDashboard.component';
+import { ProductionDataFormComponent } from './production-data-form/production-data-form.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, canActivate: [AuthGaurdService] },
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'models', component: ModelDashboardComponent, canActivate: [AuthGaurdService] },
     { path: 'variants', component: VariantDashboardComponent, canActivate: [AuthGaurdService] },
     { path: 'parts', component: PartDashboardComponent, canActivate: [AuthGaurdService] },
+    { path: 'data-sheet-form', component: ProductionDataFormComponent, canActivate: [AuthGaurdService] },
     { path: 'error', component: ErrorComponent, canActivate: [AuthGaurdService] },
     { path: 'success', component: SuccessComponent, canActivate: [AuthGaurdService] }
 ];

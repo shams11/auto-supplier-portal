@@ -1,7 +1,7 @@
 <div class="variants-name" fxLayout="row" fxLayoutAlign="start center" ><h2>Part Numbers of {{variantCode}} </h2></div>
 <div class="dashboard-container" fxLayout="row wrap"  fxLayoutGap="50px">
   <div *ngFor=" let part of parts">
-    <button class="dashboard-element-label">{{part.code}}</button>
+    <button class="dashboard-element-label" (click)="onPartSelect(part.id)">{{part.code}}</button>
     <br>
     <br>
   </div>
