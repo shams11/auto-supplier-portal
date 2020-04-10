@@ -37,7 +37,7 @@
                         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
                             <div *ngFor="let input of [0,1,2,3,4]; let k = index">
                                 <input class="production-input" type="text"
-                                       (change)='update($event.originalTarget.value, i,j,k)'/>
+                                       (change)='update($event.originalTarget.value, val.name, val.standardValue, i,j,k)'/>
 
                             </div>
                         </div>

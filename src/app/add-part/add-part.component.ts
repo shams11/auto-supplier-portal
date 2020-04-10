@@ -80,10 +80,9 @@ export class AddPartComponent implements OnInit, OnDestroy {
     if (this.addPartForm.invalid) {
       return;
     }
-    console.log(JSON.stringify(this.addPartForm.value, null, 4));
     this.loading = true;
 
-    this.partService.createVariant(this.addPartForm.value, this.variantId.value)
+    this.partService.createPart(this.addPartForm.value, this.variantId.value)
         .pipe()
         .subscribe(
             (variant) => {

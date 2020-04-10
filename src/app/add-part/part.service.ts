@@ -14,10 +14,9 @@ export class PartService {
   constructor(private http: HttpClient,
               private configService: ConfigService) { }
 
-  createVariant(body, variantId: any): Observable<Part> {
+  createPart(body, variantId: any): Observable<Part> {
     const headers = new HttpHeaders({'Content-Type': ContentTypeConstants.APPLICATION_JSON});
     const baseUrl = this.buildBaseUrl(variantId);
-    console.log(JSON.stringify(body, null, 4));
     return this.http.post<Part>(baseUrl, body, {headers});
   }
 
