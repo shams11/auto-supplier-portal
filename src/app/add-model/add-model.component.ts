@@ -1,21 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpEventType } from '@angular/common/http';
+import { takeUntil } from 'rxjs/operators';
+
 import { AlertService } from '../service/alert.service';
 import { BrandService } from '../brand/brand.service';
 import { SuccessService } from '../success/success.service';
 import { Constants } from '../common/constants';
 import { Brand } from '../common/models/brand';
-import { HttpEventType } from '@angular/common/http';
 import { ModelService } from './model.service';
 import { ErrorService } from '../error/error.service';
+import { BaseComponent } from '../common/base/base.component';
 
 @Component({
   selector: 'app-model',
   templateUrl: './add-model.component.html',
   styleUrls: ['./add-model.component.css']
 })
-export class AddModelComponent implements OnInit, OnDestroy {
+export class AddModelComponent extends BaseComponent implements OnInit {
 
   addModelFailed = false;
   addModelForm: FormGroup;
@@ -23,7 +26,6 @@ export class AddModelComponent implements OnInit, OnDestroy {
   submitted = false;
   selectedFile = null;
   brands: Brand;
-  brandId: any;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -32,6 +34,7 @@ export class AddModelComponent implements OnInit, OnDestroy {
               private modelService: ModelService,
               private successService: SuccessService,
               private errorService: ErrorService) {
+    super();
     if (!this.addModelFailed) {
       this.router.navigate(['/add-model']);
     }
@@ -49,7 +52,7 @@ export class AddModelComponent implements OnInit, OnDestroy {
 
   private getAllBrands() {
     this.brandService.getAllBrandsByOrg(sessionStorage.getItem(Constants.ORG_ID))
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(data => {
           this.brands = data;
         }, error => {
@@ -59,10 +62,6 @@ export class AddModelComponent implements OnInit, OnDestroy {
 
   get f() {
     return this.addModelForm.controls;
-  }
-
-  ngOnDestroy() {
-    this.alertService.clear();
   }
 
   onFileSelected(event) {
@@ -80,13 +79,12 @@ export class AddModelComponent implements OnInit, OnDestroy {
     const imageData = new FormData();
     imageData.append('logo', this.selectedFile, this.selectedFile.name);
     this.modelService.createModel(this.addModelForm.value, imageData)
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(
             (event) => {
               if (event.type === HttpEventType.UploadProgress) {
                 // console.log('Uplaod Progress : ' + Math.round(event.loaded / event.total * 100) + '%');
               } else if (event.type === HttpEventType.Response) {
-                console.log(event);
                 this.successService.goToSuccessPage('You have successfully uploaded brand logo');
               }
             }, (error) => {

@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 
 import { AlertService } from '../service/alert.service';
 import { SuccessService } from '../success/success.service';
@@ -9,15 +10,15 @@ import { ErrorService } from '../error/error.service';
 import { Constants } from '../common/constants';
 import { BrandService } from '../brand/brand.service';
 import { ModelService } from '../add-model/model.service';
+import { BaseComponent } from '../common/base/base.component';
 
 @Component({
   selector: 'app-add-variant',
   templateUrl: './add-variant.component.html',
   styleUrls: ['./add-variant.component.css']
 })
-export class AddVariantComponent implements OnInit, OnDestroy {
+export class AddVariantComponent extends BaseComponent implements OnInit {
 
-  addVariantFailed = false;
   addVariantForm: FormGroup;
   loading = false;
   submitted = false;
@@ -31,7 +32,9 @@ export class AddVariantComponent implements OnInit, OnDestroy {
               private modelService: ModelService,
               private variantService: VariantService,
               private successService: SuccessService,
-              private errorService: ErrorService) { }
+              private errorService: ErrorService) {
+    super();
+  }
 
   ngOnInit() {
     this.addVariantForm = this.formBuilder.group({
@@ -47,7 +50,7 @@ export class AddVariantComponent implements OnInit, OnDestroy {
   // TODO: Need to commonaize this code. Also present in add-model.component.ts
   private getAllBrandsForLoggedInUser() {
     this.brandService.getAllBrandsByOrg(sessionStorage.getItem(Constants.ORG_ID))
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(data => {
           this.brands = data;
         }, error => {
@@ -62,9 +65,8 @@ export class AddVariantComponent implements OnInit, OnDestroy {
       return;
     }
     this.loading = true;
-
     this.variantService.createVariant(this.addVariantForm.value, this.modelId.value)
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(
             (variant) => {
               this.successService.goToSuccessPage('You have successfully created variant');
@@ -78,13 +80,9 @@ export class AddVariantComponent implements OnInit, OnDestroy {
     return this.addVariantForm.controls;
   }
 
-  ngOnDestroy() {
-    this.alertService.clear();
-  }
-
   getAllModelsByBrand(brandId) {
     this.modelService.getAllModelsByBrand(brandId)
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(data => {
           this.models = data;
         }, error => {
@@ -99,7 +97,7 @@ export class AddVariantComponent implements OnInit, OnDestroy {
     this.getAllModelsByBrand(this.brand.value);
   }
 
-  // Getter method to access formcontrols
+  // Getter method to access form controls
   get brand() {
     return this.addVariantForm.get('brand');
   }

@@ -1,6 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+
 import { AlertService } from '../service/alert.service';
 import { BrandService } from '../brand/brand.service';
 import { ModelService } from '../add-model/model.service';
@@ -9,13 +11,14 @@ import { SuccessService } from '../success/success.service';
 import { ErrorService } from '../error/error.service';
 import { Constants } from '../common/constants';
 import { PartService } from './part.service';
+import { BaseComponent } from '../common/base/base.component';
 
 @Component({
   selector: 'app-add-part',
   templateUrl: './add-part.component.html',
   styleUrls: ['./add-part.component.css']
 })
-export class AddPartComponent implements OnInit, OnDestroy {
+export class AddPartComponent extends BaseComponent implements OnInit {
 
   addPartForm: FormGroup;
   loading = false;
@@ -32,7 +35,9 @@ export class AddPartComponent implements OnInit, OnDestroy {
               private variantService: VariantService,
               private successService: SuccessService,
               private errorService: ErrorService,
-              private partService: PartService) { }
+              private partService: PartService) {
+    super();
+  }
 
   ngOnInit() {
     this.addPartForm = this.formBuilder.group({
@@ -50,14 +55,10 @@ export class AddPartComponent implements OnInit, OnDestroy {
     return this.addPartForm.controls;
   }
 
-  ngOnDestroy() {
-    this.alertService.clear();
-  }
-
   // TODO: Need to commonaize this code. Also present in add-model.component.ts
   private getAllBrandsForLoggedInUser() {
     this.brandService.getAllBrandsByOrg(sessionStorage.getItem(Constants.ORG_ID))
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(data => {
           this.brands = data;
         }, error => {
@@ -67,7 +68,7 @@ export class AddPartComponent implements OnInit, OnDestroy {
 
   getAllModelsByBrand(brandId) {
     this.modelService.getAllModelsByBrand(brandId)
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(data => {
           this.models = data;
         }, error => {
@@ -83,7 +84,7 @@ export class AddPartComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     this.partService.createPart(this.addPartForm.value, this.variantId.value)
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(
             (variant) => {
               this.successService.goToSuccessPage('You have successfully created part');
@@ -130,7 +131,7 @@ export class AddPartComponent implements OnInit, OnDestroy {
 
   private getAllVariantsByModel(modelId) {
     this.variantService.getAllVariantsByModel(modelId)
-        .pipe()
+        .pipe(takeUntil(this.componentDestroyed$ as any))
         .subscribe(data => {
           this.variants = data;
         }, error => {
