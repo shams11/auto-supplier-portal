@@ -19,7 +19,7 @@
     </div>
     <div class="horizontal-line"></div>
 
-    <form [formGroup]="productionDataForm" (ngSubmit)="createProductionData()">
+    <form [formGroup]="productionDataForm" (ngSubmit)="submitProductionDataForm()">
         <div *ngFor="let dimension of partDimensions; let i = index">
             <div class="dimension-heading-container" fxLayout="row" fxLayoutAlign="start center">
                 <div> {{i + 1}} </div>
@@ -36,8 +36,7 @@
                         <div class="dimension-name"> {{val.name}} {{val.standardValue}}</div>
                         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
                             <div *ngFor="let input of [0,1,2,3,4]; let k = index">
-                                <input class="production-input" type="text"
-                                       (change)='update($event.originalTarget.value, val.name, val.standardValue, i,j,k)'/>
+                                <input class="production-input" type="text"/>
 
                             </div>
                         </div>
@@ -49,7 +48,7 @@
             <div class="vertical-line"></div>
         </div>
         <div class="add-user-form-element">
-            <button class="btn btn-success"  (click)="createProductionData()">
+            <button class="btn btn-success">
                 <span  class="spinner-border spinner-border-sm mr-1"></span>
                 Add
             </button>

@@ -25,6 +25,7 @@ import { VariantDashboardComponent } from './variantdashboard/variantdashboard.c
 import { AddPartComponent } from './add-part/add-part.component';
 import { PartDashboardComponent } from './partdashboard/partDashboard.component';
 import { ProductionDataFormComponent } from './production-data-form/production-data-form.component';
+import { BaseComponent } from './common/base/base.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { ProductionDataFormComponent } from './production-data-form/production-d
         VariantDashboardComponent,
         AddPartComponent,
         PartDashboardComponent,
-        ProductionDataFormComponent
+        ProductionDataFormComponent,
+        BaseComponent
     ],
     imports: [
         BrowserModule,

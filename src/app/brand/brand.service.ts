@@ -14,10 +14,7 @@ export class BrandService {
     }
 
   createBrand(formData, body): Observable<any> {
-    return this.http.post<any>(this.configService.getBrandsBaseUrl() + `?name=${formData.name}`, body, {
-      reportProgress: true,
-      observe: 'events'
-    });
+    return this.http.post<any>(this.configService.getBrandsBaseUrl() + `?name=${formData.name}`, body);
   }
 
     getAllBrandsByOrg(orgId: string): Observable<Brand> {

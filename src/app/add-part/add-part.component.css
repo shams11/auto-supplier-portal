@@ -5,6 +5,7 @@
 }
 .add-user-form-element {
     margin: 20px;
+    text-align: start;
 }
 
 .add-user-form-element input {

@@ -6,6 +6,7 @@
 
 .form-element {
     margin:20px;
+    text-align: start;
 }
 
 .form-element input {
