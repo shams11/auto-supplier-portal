@@ -72,7 +72,7 @@
     "karma-junit-reporter": "1.2.0",
     "karma-webdriver-launcher": "1.0.5",
     "protractor": "^5.4.2",
-    "puppeteer": "1.1.0",
+    "puppeteer": "1.13.0",
     "rxjs-tslint": "^0.1.7",
     "ts-node": "7.0.0",
     "tslib": "1.9.0",
